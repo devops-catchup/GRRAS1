@@ -24,11 +24,11 @@ pipeline{
 		    steps {
 			script {
 			 if ( env.ENVIRONMENT == 'QA' ){
-        	sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
+        	sh 'cp target/GRRAS1.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
         	echo "deployment has been done on QA!"
 			 }
 			elif ( env.ENVIRONMENT == 'UAT' ){
-    		sh 'cp target/CICD.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
+    		sh 'cp target/GRRAS1.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
     		echo "deployment has been done on UAT!"
 			}
 			echo "deployment has been done!"
