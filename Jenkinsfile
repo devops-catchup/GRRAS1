@@ -12,7 +12,7 @@ pipeline{
 				git 'https://github.com/devops-catchup/GRRAS1.git'
 			}
 		}
-		stage (compile and build){
+		stage (compilebuild){
 			steps{
 				sh 'mvn install'
 			}
