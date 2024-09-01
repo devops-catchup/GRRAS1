@@ -1,37 +1,18 @@
-pipeline{
-
-	agent any 
-	
-	parameters {
-  	choice choices: ['DEV', 'QA', 'UAT'], name: 'ENVIRONMENT'
+pipeline {
+	agent{
+	label 'slave-label'
 	}
-	
 	stages {
-
-		stage (checkout){
-			steps{
-				git 'https://github.com/devops-catchup/GRRAS1.git'
-			}
-		}
-		stage (compilebuild){
-			steps{
-				sh 'mvn install'
-			}
-		}
+	    stage('Checkout') {
+	        steps {
+			checkout scm			       
+		      }}
+		stage('Build') {
+	           steps {
+			  sh 'mvn install'
+	                 }}
 		stage('Deployment'){
 		    steps {
-			script {
-			 if ( "${env.ENVIRONMENT}" == 'QA' ){
-        	sh 'cp target/GRRAS1.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
-        	echo "deployment has been done on QA!"
-			 }
-			else if ( "${env.ENVIRONMENT}" == 'UAT' ){
-    		sh 'cp target/GRRAS1.war /home/swapnil/Documents/DevOps-Software/apache-tomcat-9.0.79/webapps'
-    		echo "deployment has been done on UAT!"
-			}
-			echo "deployment has been done!"
-		}
-		}
-	}
-}
-}
+			sh 'cp target/GRRAS1.war /home/grras/slavedir/apache-tomcat-9.0.79/webapps'
+			}}	
+}}
