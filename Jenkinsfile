@@ -14,5 +14,10 @@ pipeline {
 		stage('Deployment'){
 		    steps {
 			sh 'cp target/GRRAS1.war /home/grras/slavedir/apache-tomcat-9.0.79/webapps'
-			}}	
+			}}
+		stage('slack-notification'){
+		   steps {
+		     
+		     slackSend baseUrl: 'https://hooks.slack.com/services/', channel: '# devops-notification', color: 'good', message: 'welcome to jenkins slack world', teamDomain: 'devops', tokenCredentialId: 'slacknotifier'
+		     }}		
 }}
